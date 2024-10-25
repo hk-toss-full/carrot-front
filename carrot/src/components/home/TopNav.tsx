@@ -5,7 +5,7 @@ import { faComments } from "@fortawesome/free-regular-svg-icons";
 
 const TopNav: React.FC = () => {
   return (
-    <div className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-[600px] z-50 shadow-md">
+    <div className="fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-[600px] bg-white z-50 shadow-md">
       <nav className="flex justify-between items-center p-4">
         <div className="flex items-center">
           <div>중림동</div>
