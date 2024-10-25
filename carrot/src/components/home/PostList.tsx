@@ -35,6 +35,12 @@ const posts: Post[] = [
     time: "6분 전",
     price: "10,000원",
   },
+  {
+    title: "아이폰13미니 핑크 128g",
+    location: "상봉동",
+    time: "1일 전",
+    price: "330,000원",
+  },
 ];
 
 const PostItem: React.FC<Post> = ({
@@ -47,7 +53,7 @@ const PostItem: React.FC<Post> = ({
   return (
     <div className="flex border-b py-4">
       {/* 이미지 부분 (회색 div로 대체) */}
-      <div className="w-[110px] h-[110px] bg-gray-300 rounded-md mr-4"></div>
+      <div className="w-[92px] h-[92px] bg-gray-300 rounded-md mr-4"></div>
       <div className="justify-between">
         <div>
           <h2>{title}</h2>
