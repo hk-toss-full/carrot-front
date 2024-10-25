@@ -13,7 +13,7 @@ const TopNav: React.FC = () => {
             <FontAwesomeIcon icon="chevron-down" />
           </div>
         </div>
-        <div className="flex space-x-4">
+        <div className="flex space-x-6">
           <div>
             <FontAwesomeIcon icon="magnifying-glass" />
           </div>
