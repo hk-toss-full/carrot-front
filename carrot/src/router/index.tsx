@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
-import Home from "@/pages/home";
-import GlobalLayout from "@/layouts/global";
+import HomePage from "../pages/home";
+import GlobalLayout from "../layouts/global";
 
 type CustomRouteObject = {
   label?: string;
@@ -10,7 +10,7 @@ type CustomRouteObject = {
 export const ROUTES: CustomRouteObject[] = [
   {
     path: "/",
-    element: <Home />,
+    element: <HomePage />,
     label: "홈",
     show: true,
   },
