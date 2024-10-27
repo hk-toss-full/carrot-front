@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useLocation } from "react-router-dom";
 
@@ -12,11 +13,12 @@ const PostDetail: React.FC = () => {
     <div className="m-[-16px] relative flex flex-col h-full">
       {/* 상단 이미지 및 뒤로가기, 홈 버튼 */}
       <div className="relative">
-        <div className="absolute top-4 left-4 z-10">
-          <button className="p-2 rounded-full">뒤로가기</button>
-        </div>
-        <div className="absolute top-4 right-4 z-10">
-          <button className="p-2 rounded-full">홈</button>
+        <div className="absolute top-4 left-4 z-10 flex space-x-2">
+          <FontAwesomeIcon
+            icon="chevron-left"
+            size="xl"
+            className="text-white"
+          />
         </div>
 
         {/* 이미지 슬라이더 */}
