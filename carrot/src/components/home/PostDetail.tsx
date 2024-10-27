@@ -13,21 +13,22 @@ const PostDetail: React.FC = () => {
       {/* 상단 이미지 및 뒤로가기, 홈 버튼 */}
       <div className="relative">
         <div className="absolute top-4 left-4 z-10">
-          <button className="p-2 bg-white rounded-full">뒤로가기</button>
+          <button className="p-2 rounded-full">뒤로가기</button>
         </div>
         <div className="absolute top-4 right-4 z-10">
-          <button className="p-2 bg-white rounded-full">홈</button>
+          <button className="p-2 rounded-full">홈</button>
         </div>
 
         {/* 이미지 슬라이더 */}
-        <div className="w-full h-64 bg-gray-200 flex overflow-x-auto snap-x">
+        <div className="w-full h-80 overflow-x-auto flex snap-x snap-mandatory scrollbar-hide bg-gray-300">
           {images.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={`product-${index}`}
-              className="w-full h-full object-cover snap-start"
-            />
+            <div key={index} className="flex-none w-full h-full snap-start">
+              <img
+                src={image}
+                alt={`product-${index}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
           ))}
         </div>
       </div>
