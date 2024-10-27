@@ -7,6 +7,8 @@ const PostDetail: React.FC = () => {
   const { title, location: postLocation, time, price } = location.state || {};
 
   const images = ["image1.jpg", "image2.jpg", "image3.jpg"];
+  const nickname = "당근";
+  const category = "디지털기기";
   const description = "상태 최상이에요.";
 
   return (
@@ -35,11 +37,24 @@ const PostDetail: React.FC = () => {
         </div>
       </div>
 
+      {/* 유저 정보 */}
+      <div className="p-4 flex items-center border-b">
+        <FontAwesomeIcon
+          icon="circle-user"
+          size="2xl"
+          className="text-gray-400"
+        />
+        <div className="ml-3">
+          <div className="text-sm font-bold">{nickname}</div>
+          <div className="text-xs">{postLocation}</div>
+        </div>
+      </div>
+
       {/* 상세 정보 */}
       <div className="p-4">
         <h1 className="text-lg font-bold">{title}</h1>
         <p className="text-gray-500 text-sm">
-          {postLocation} ・ {time}
+          {category} ・ {time}
         </p>
         <p className="mt-4">{description}</p>
       </div>
