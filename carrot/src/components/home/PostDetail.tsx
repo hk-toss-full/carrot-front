@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
 import React from "react";
 import { useLocation } from "react-router-dom";
 
@@ -61,11 +62,15 @@ const PostDetail: React.FC = () => {
 
       {/* 하단 고정 버튼 영역 */}
       <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[600px] flex items-center justify-between bg-white p-4 border-t">
-        <button className="flex items-center">
-          <span>찜</span>
-        </button>
-        <span className="text-lg font-bold">{price}</span>
-        <button className="bg-orange-500 text-white px-4 py-2 rounded-lg">
+        <div className="flex items-center space-x-2">
+          <FontAwesomeIcon
+            icon={faRegularHeart}
+            size="xl"
+            className="text-gray-400 pr-3"
+          />
+          <span className="text-lg font-bold border-l pl-5">{price}</span>
+        </div>
+        <button className="bg-orange text-xs text-white px-4 py-2 rounded">
           채팅하기
         </button>
       </div>
