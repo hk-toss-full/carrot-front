@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Post {
   title: string;
@@ -43,15 +44,22 @@ const posts: Post[] = [
   },
 ];
 
-const PostItem: React.FC<Post> = ({
+const PostItem: React.FC<Post & { index: number }> = ({
   title,
   location,
   time,
   price,
   isReserved,
+  index,
 }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/post/${index}`, { state: { title, location, time, price } });
+  };
+
   return (
-    <div className="flex border-b py-4">
+    <div onClick={handleClick} className="flex border-b py-4 cursor-pointer">
       {/* 이미지 부분 (회색 div로 대체) */}
       <div className="w-[92px] h-[92px] bg-gray-300 rounded-md mr-4"></div>
       <div className="justify-between">
@@ -74,7 +82,7 @@ const PostList: React.FC = () => {
   return (
     <div>
       {posts.map((post, index) => (
-        <PostItem key={index} {...post} />
+        <PostItem key={index} index={index} {...post} />
       ))}
     </div>
   );
