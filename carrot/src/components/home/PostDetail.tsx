@@ -2,13 +2,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PostDetail: React.FC = () => {
   const location = useLocation();
   const { title, location: postLocation, time, price } = location.state || {};
 
+  const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
+
+  const handleBackClick = () => {
+    navigate(-1);
+  };
 
   const toggleLike = () => {
     setIsLiked((prev) => !prev);
@@ -21,13 +26,14 @@ const PostDetail: React.FC = () => {
 
   return (
     <div className="m-[-16px] relative flex flex-col h-full">
-      {/* 상단 이미지 및 뒤로가기, 홈 버튼 */}
+      {/* 상단 이미지 및 뒤로가기 버튼 */}
       <div className="relative">
         <div className="absolute top-4 left-4 z-10 flex space-x-2">
           <FontAwesomeIcon
             icon="chevron-left"
             size="xl"
             className="text-white"
+            onClick={handleBackClick}
           />
         </div>
 
