@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 interface Post {
+  index: number;
   title: string;
   location: string;
   time: string;
@@ -12,12 +13,14 @@ interface Post {
 // 더미 데이터
 const posts: Post[] = [
   {
+    index: 1,
     title: "에어팟4 노캔버전",
     location: "방학제2동",
     time: "9분 전",
     price: "219,000원",
   },
   {
+    index: 2,
     title: "애플 에어팟2",
     location: "하월곡동",
     time: "12분 전",
@@ -25,18 +28,21 @@ const posts: Post[] = [
     isReserved: true,
   },
   {
+    index: 3,
     title: "아이폰 13미니 팝니다",
     location: "상계5동",
     time: "11분 전",
     price: "310,000원",
   },
   {
+    index: 4,
     title: "아이패드미니2 부품용",
     location: "상계6.7동",
     time: "6분 전",
     price: "10,000원",
   },
   {
+    index: 5,
     title: "아이폰13미니 핑크 128g",
     location: "상봉동",
     time: "1일 전",
@@ -44,13 +50,13 @@ const posts: Post[] = [
   },
 ];
 
-const PostItem: React.FC<Post & { index: number }> = ({
+const PostItem: React.FC<Post> = ({
+  index,
   title,
   location,
   time,
   price,
   isReserved,
-  index,
 }) => {
   const navigate = useNavigate();
 
@@ -82,7 +88,7 @@ const PostList: React.FC = () => {
   return (
     <div>
       {posts.map((post, index) => (
-        <PostItem key={index} index={index + 1} {...post} />
+        <PostItem key={index} {...post} />
       ))}
     </div>
   );
