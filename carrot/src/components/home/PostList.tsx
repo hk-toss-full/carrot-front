@@ -82,7 +82,7 @@ const PostList: React.FC = () => {
   return (
     <div>
       {posts.map((post, index) => (
-        <PostItem key={index} index={index} {...post} />
+        <PostItem key={index} index={index + 1} {...post} />
       ))}
     </div>
   );
