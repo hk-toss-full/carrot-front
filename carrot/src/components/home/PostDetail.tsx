@@ -1,11 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
-import React from "react";
+import { faHeart as faSolidHeart } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const PostDetail: React.FC = () => {
   const location = useLocation();
   const { title, location: postLocation, time, price } = location.state || {};
+
+  const [isLiked, setIsLiked] = useState(false);
+
+  const toggleLike = () => {
+    setIsLiked((prev) => !prev);
+  };
 
   const images = ["image1.jpg", "image2.jpg", "image3.jpg"];
   const nickname = "당근";
@@ -64,9 +71,12 @@ const PostDetail: React.FC = () => {
       <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[600px] flex items-center justify-between bg-white p-4 border-t">
         <div className="flex items-center space-x-2">
           <FontAwesomeIcon
-            icon={faRegularHeart}
+            icon={isLiked ? faSolidHeart : faRegularHeart}
             size="xl"
-            className="text-gray-400 pr-3"
+            className={`pr-3 cursor-pointer ${
+              isLiked ? "text-red-600" : "text-gray-400"
+            }`}
+            onClick={toggleLike}
           />
           <span className="text-lg font-bold border-l pl-5">{price}</span>
         </div>
