@@ -10,7 +10,6 @@ import { PaymentSuccessPage } from "../pages/payment/payment/paymentsuccess";
 import { BrandpaySuccessPage } from "../pages/payment/brandpay/brandpaysuccess";
 import { WidgetCheckoutPage } from "../pages/payment/widget/widgetcheckout";
 import { WidgetSuccessPage } from "../pages/payment/widget/widgetsuccess";
-import { createBrowserRouter, RouteObject } from "react-router-dom";
 
 type CustomRouteObject = {
   label?: string;
