@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import FloatButton from "./FloatButton";
 
 interface Post {
   index: number;
@@ -86,10 +87,11 @@ const PostItem: React.FC<Post> = ({
 
 const PostList: React.FC = () => {
   return (
-    <div>
+    <div className="max-w-[600px] mx-auto">
       {posts.map((post, index) => (
         <PostItem key={index} {...post} />
       ))}
+      <FloatButton />
     </div>
   );
 };
