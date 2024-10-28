@@ -9,6 +9,8 @@ import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 // 사용할 아이콘을 라이브러리에 추가
 library.add(
@@ -19,5 +21,7 @@ library.add(
   faChevronUp,
   faChevronLeft,
   faMagnifyingGlass,
-  faCircleUser
+  faCircleUser,
+  faCamera,
+  faCircleXmark
 );
