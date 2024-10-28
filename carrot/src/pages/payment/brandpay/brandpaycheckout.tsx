@@ -1,11 +1,6 @@
 import { loadTossPayments, TossPaymentsBrandpay } from "@tosspayments/tosspayments-sdk";
 import { useEffect, useState } from "react";
 
-// ------ SDK 초기화 ------
-// TODO: clientKey는 개발자센터의 API 개별 연동 키 > 연동에 사용할 브랜드페이가 계약된 MID > 클라이언트 키로 바꾸세요.
-// TODO: server.js 의 secretKey 또한 결제위젯 연동 키가 아닌 API 개별 연동 키의 시크릿 키로 변경해야 합니다.
-// TODO: 구매자의 고유 아이디를 불러와서 customerKey로 설정하세요. 이메일・전화번호와 같이 유추가 가능한 값은 안전하지 않습니다.
-// @docs https://docs.tosspayments.com/sdk/v2/js#토스페이먼츠-초기화
 const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
 const customerKey = generateRandomString();
 
@@ -16,37 +11,29 @@ export function BrandpayCheckoutPage() {
     async function fetchBrandpay() {
       try {
         const tossPayments = await loadTossPayments(clientKey);
-
-        // 브랜드페이 객체 생성
-        // @docs https://docs.tosspayments.com/sdk/v2/js#tosspaymentsbrandpay
         const brandpayInstance = tossPayments.brandpay({
           customerKey,
           redirectUrl: "http://localhost:3000/api/callback-auth",
         });
-
         setBrandpay(brandpayInstance);
       } catch (error) {
         console.error("Error fetching brandpay:", error);
       }
     }
-
     fetchBrandpay();
   }, []);
 
-  // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
-  // @docs https://docs.tosspayments.com/sdk/v2/js#brandpayrequestpayment
   async function requestPayment() {
     if (!brandpay) return;
-
     await brandpay.requestPayment({
       amount: {
         currency: "KRW",
         value: 50000,
       },
-      orderId: generateRandomString(), // 고유 주문번호
+      orderId: generateRandomString(),
       orderName: "토스 티셔츠 외 2건",
-      successUrl: `${window.location.origin}/brandpay/success?customerKey=${customerKey}&`, // 결제 요청이 성공하면 리다이렉트되는 URL
-      failUrl: `${window.location.origin}/fail`, // 결제 요청이 실패하면 리다이렉트되는 URL
+      successUrl: `${window.location.origin}/brandpay/success?customerKey=${customerKey}&`,
+      failUrl: `${window.location.origin}/fail`,
       customerEmail: "customer123@gmail.com",
       customerName: "김토스",
     });
@@ -79,35 +66,48 @@ export function BrandpayCheckoutPage() {
   }
 
   return (
-    <div className="wrapper">
-      <div
-        className="box_section"
-        style={{
-          padding: "40px 30px 50px 30px",
-          marginTop: "30px",
-          marginBottom: "50px",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <button className="button" style={{ marginTop: "30px" }} onClick={requestPayment}>
-          결제하기
-        </button>
-        <button className="button" style={{ marginTop: "30px" }} onClick={addPaymentMethod}>
-          결제수단추가
-        </button>
-        <button className="button" style={{ marginTop: "30px" }} onClick={changeOneTouchPay}>
-          원터치페이설정변경
-        </button>
-        <button className="button" style={{ marginTop: "30px" }} onClick={changePassword}>
-          비밀번호변경
-        </button>
-        <button className="button" style={{ marginTop: "30px" }} onClick={isOneTouchPayEnabled}>
-          원터치결제사용가능여부 조회
-        </button>
-        <button className="button" style={{ marginTop: "30px" }} onClick={openSettings}>
-          브랜드페이 설정 열기
-        </button>
+    <div className="flex flex-col items-center bg-gray-50 min-h-screen py-10 font-sans">
+      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg">
+        <h1 className="text-3xl font-semibold text-center mb-6 text-gray-700">브랜드페이 결제</h1>
+
+        <div className="flex flex-col gap-4">
+          <button
+            className="py-3 rounded-md text-white font-medium shadow transition-colors bg-blue-500 hover:bg-blue-600 focus:outline-none"
+            onClick={requestPayment}
+          >
+            결제하기
+          </button>
+          <button
+            className="py-3 rounded-md text-gray-700 font-medium shadow-sm transition-colors bg-gray-200 hover:bg-gray-300 focus:outline-none"
+            onClick={addPaymentMethod}
+          >
+            결제 수단 추가
+          </button>
+          <button
+            className="py-3 rounded-md text-gray-700 font-medium shadow-sm transition-colors bg-gray-200 hover:bg-gray-300 focus:outline-none"
+            onClick={changeOneTouchPay}
+          >
+            원터치페이 설정 변경
+          </button>
+          <button
+            className="py-3 rounded-md text-gray-700 font-medium shadow-sm transition-colors bg-gray-200 hover:bg-gray-300 focus:outline-none"
+            onClick={changePassword}
+          >
+            비밀번호 변경
+          </button>
+          <button
+            className="py-3 rounded-md text-gray-700 font-medium shadow-sm transition-colors bg-gray-200 hover:bg-gray-300 focus:outline-none"
+            onClick={isOneTouchPayEnabled}
+          >
+            원터치 결제 가능 여부 조회
+          </button>
+          <button
+            className="py-3 rounded-md text-gray-700 font-medium shadow-sm transition-colors bg-gray-200 hover:bg-gray-300 focus:outline-none"
+            onClick={openSettings}
+          >
+            브랜드페이 설정 열기
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -116,3 +116,5 @@ export function BrandpayCheckoutPage() {
 function generateRandomString(): string {
   return window.btoa(Math.random().toString()).slice(0, 20);
 }
+
+export default BrandpayCheckoutPage;
