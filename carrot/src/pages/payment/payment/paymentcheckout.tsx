@@ -1,11 +1,6 @@
 import { loadTossPayments, TossPaymentsPayment } from "@tosspayments/tosspayments-sdk";
 import { useEffect, useState } from "react";
 
-// ------ SDK 초기화 ------
-// TODO: clientKey는 개발자센터의 API 개별 연동 키 > 결제창 연동에 사용하려할 MID > 클라이언트 키로 바꾸세요.
-// TODO: server.js 의 secretKey 또한 결제위젯 연동 키가 아닌 API 개별 연동 키의 시크릿 키로 변경해야 합니다.
-// TODO: 구매자의 고유 아이디를 불러와서 customerKey로 설정하세요. 이메일・전화번호와 같이 유추가 가능한 값은 안전하지 않습니다.
-// @docs https://docs.tosspayments.com/sdk/v2/js#토스페이먼츠-초기화
 const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
 const customerKey = generateRandomString();
 
@@ -28,15 +23,9 @@ export function PaymentCheckoutPage() {
     async function fetchPayment() {
       try {
         const tossPayments = await loadTossPayments(clientKey);
-
-        // 회원 결제
-        // @docs https://docs.tosspayments.com/sdk/v2/js#tosspaymentspayment
         const paymentInstance = tossPayments.payment({
           customerKey,
         });
-        // 비회원 결제
-        // const paymentInstance = tossPayments.payment({ customerKey: ANONYMOUS });
-
         setPayment(paymentInstance);
       } catch (error) {
         console.error("Error fetching payment:", error);
@@ -46,8 +35,6 @@ export function PaymentCheckoutPage() {
     fetchPayment();
   }, []);
 
-  // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
-  // @docs https://docs.tosspayments.com/sdk/v2/js#paymentrequestpayment
   async function requestPayment() {
     if (!payment || !selectedPaymentMethod) return;
 
@@ -63,71 +50,10 @@ export function PaymentCheckoutPage() {
     };
 
     try {
-      switch (selectedPaymentMethod) {
-        case "CARD":
-          await payment.requestPayment({
-            ...commonParams,
-            method: "CARD",
-            card: {
-              useEscrow: false,
-              flowMode: "DEFAULT",
-              useCardPoint: false,
-              useAppCardOnly: false,
-            },
-          });
-          break;
-        case "TRANSFER":
-          await payment.requestPayment({
-            ...commonParams,
-            method: "TRANSFER",
-            transfer: {
-              cashReceipt: {
-                type: "소득공제",
-              },
-              useEscrow: false,
-            },
-          });
-          break;
-        case "VIRTUAL_ACCOUNT":
-          await payment.requestPayment({
-            ...commonParams,
-            method: "VIRTUAL_ACCOUNT",
-            virtualAccount: {
-              cashReceipt: {
-                type: "소득공제",
-              },
-              useEscrow: false,
-              validHours: 24,
-            },
-          });
-          break;
-        case "MOBILE_PHONE":
-          await payment.requestPayment({
-            ...commonParams,
-            method: "MOBILE_PHONE",
-          });
-          break;
-        case "CULTURE_GIFT_CERTIFICATE":
-          await payment.requestPayment({
-            ...commonParams,
-            method: "CULTURE_GIFT_CERTIFICATE",
-          });
-          break;
-        case "FOREIGN_EASY_PAY":
-          await payment.requestPayment({
-            ...commonParams,
-            method: "FOREIGN_EASY_PAY",
-            amount: {
-              value: 100,
-              currency: "USD",
-            },
-            foreignEasyPay: {
-              provider: "PAYPAL",
-              country: "KR",
-            },
-          });
-          break;
-      }
+      await payment.requestPayment({
+        ...commonParams,
+        method: selectedPaymentMethod,
+      });
     } catch (error) {
       console.error("Payment request failed:", error);
     }
@@ -136,7 +62,7 @@ export function PaymentCheckoutPage() {
   async function requestBillingAuth() {
     if (!payment) return;
     await payment.requestBillingAuth({
-      method: "CARD", // 자동결제(빌링)은 카드만 지원합니다
+      method: "CARD",
       successUrl: window.location.origin + "/payment/billing",
       failUrl: window.location.origin + "/fail",
       customerEmail: "customer123@gmail.com",
@@ -145,28 +71,47 @@ export function PaymentCheckoutPage() {
   }
 
   return (
-    <div className="wrapper">
-      <div className="box_section">
-        <h1>일반 결제</h1>
-        <div id="payment-method" style={{ display: "flex" }}>
-          {["CARD", "TRANSFER", "VIRTUAL_ACCOUNT", "MOBILE_PHONE", "CULTURE_GIFT_CERTIFICATE", "FOREIGN_EASY_PAY"].map((method) => (
-            <button
-              key={method}
-              id={method}
-              className={`button2 ${selectedPaymentMethod === method ? "active" : ""}`}
-              onClick={() => selectPaymentMethod(method as PaymentMethod)}
-            >
-              {method}
-            </button>
-          ))}
+    <div className="flex flex-col items-center bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 min-h-screen py-10 font-sans">
+      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg">
+        <h1 className="text-3xl font-bold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+          결제하기
+        </h1>
+
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">결제 수단 선택</h2>
+          <div className="grid grid-cols-2 gap-4">
+            {["CARD", "TRANSFER", "VIRTUAL_ACCOUNT", "MOBILE_PHONE", "CULTURE_GIFT_CERTIFICATE", "FOREIGN_EASY_PAY"].map((method) => (
+              <button
+                key={method}
+                className={`py-3 px-4 rounded-lg shadow-md transition duration-200 ease-in-out 
+                  ${selectedPaymentMethod === method ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}
+                onClick={() => selectPaymentMethod(method as PaymentMethod)}
+              >
+                {method}
+              </button>
+            ))}
+          </div>
         </div>
-        <button className="button" onClick={() => requestPayment()}>
+
+        <div className="mb-8 bg-gray-50 p-4 rounded-lg shadow-inner">
+          <h2 className="text-lg font-semibold text-gray-700 mb-2">결제 정보</h2>
+          <p className="text-gray-600">상품 금액: <span className="font-bold text-blue-600">{amount.value.toLocaleString()}원</span></p>
+        </div>
+
+        <button
+          onClick={requestPayment}
+          className="w-full py-3 rounded-lg text-white font-bold text-lg transition-transform transform hover:scale-105 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+        >
           결제하기
         </button>
       </div>
-      <div className="box_section">
-        <h1>정기 결제</h1>
-        <button className="button" onClick={() => requestBillingAuth()}>
+
+      <div className="bg-white shadow-lg rounded-2xl p-8 mt-8 w-full max-w-lg">
+        <h1 className="text-lg font-semibold text-center text-purple-600 mb-4">정기 결제</h1>
+        <button
+          onClick={requestBillingAuth}
+          className="w-full py-3 rounded-lg text-white font-bold text-lg transition-transform transform hover:scale-105 bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600"
+        >
           빌링키 발급하기
         </button>
       </div>
@@ -177,3 +122,5 @@ export function PaymentCheckoutPage() {
 function generateRandomString(): string {
   return window.btoa(Math.random().toString()).slice(0, 20);
 }
+
+export default PaymentCheckoutPage;

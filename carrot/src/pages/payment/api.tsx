@@ -1,4 +1,3 @@
-// src/api/paymentApi.ts
 import axios from 'axios';
 
 // 요청을 위한 기본 Axios 설정

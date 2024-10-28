@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import router from "./router";
 import "@/style/tailwindcss.css";
 import "@/style/global.css";
@@ -13,11 +13,9 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-    <QueryClientProvider client={queryClient}>
-      
-      <RouterProvider router={createBrowserRouter(router)} />
-      
-    </QueryClientProvider>
+  <QueryClientProvider client={queryClient}>
+    <RouterProvider router={router} />
+  </QueryClientProvider>
 );
 
 reportWebVitals();

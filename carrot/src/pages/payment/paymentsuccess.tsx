@@ -1,17 +1,21 @@
-// src/pages/payment/PaymentSuccess.tsx
+// src/pages/payment/Success.tsx
 import React from "react";
-import Button from "@/components/Button";  // 버튼 컴포넌트 불러오기
 
-const PaymentSuccess: React.FC = () => {
-  const handleComplete = () => {
-    // 완료 버튼 클릭 시 실행할 동작
-    console.log("결제가 완료되었습니다.");
-  };
+interface PaymentSuccessProps {
+  responseData: any;
+}
 
+const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ responseData }) => {
   return (
     <div className="text-center text-xl font-semibold">
       <div>결제가 완료되었습니다!</div>
-      <Button text="완료하기" onClick={handleComplete} /> 결제 완료하기 
+      {responseData && (
+        <div className="mt-4">
+          <p>주문번호: {responseData.orderId}</p>
+          <p>결제 금액: {responseData.amount.toLocaleString()}원</p>
+          <p>결제 키: {responseData.paymentKey}</p>
+        </div>
+      )}
     </div>
   );
 };

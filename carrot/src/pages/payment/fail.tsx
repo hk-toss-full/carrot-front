@@ -34,3 +34,4 @@ export function FailPage() {
     </div>
   );
 }
+export default FailPage
