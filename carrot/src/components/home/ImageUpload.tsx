@@ -36,9 +36,9 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ setImages }) => {
           onChange={handleImageChange}
           className="hidden"
         />
-        <div className="flex flex-col items-center justify-center w-16 h-16 border border-gray-300 rounded-lg">
-          <FontAwesomeIcon icon="camera" size="lg" className="text-gray-400" />
-          <div className="text-xs text-gray-600 mt-0.5">
+        <div className="flex flex-col items-center justify-center w-20 h-20 border border-gray-300 rounded-lg">
+          <FontAwesomeIcon icon="camera" size="xl" className="text-gray-400" />
+          <div className="text-sm text-gray-600 mt-0.5">
             {images.length}/{maxImages}
           </div>
         </div>
@@ -49,7 +49,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ setImages }) => {
             <img
               src={URL.createObjectURL(image)}
               alt={`uploaded-${index}`}
-              className="w-16 h-16 object-cover rounded-lg"
+              className="w-20 h-20 object-cover rounded-lg"
             />
             <FontAwesomeIcon
               icon="circle-xmark"

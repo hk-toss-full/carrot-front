@@ -14,7 +14,7 @@ const UploadPost: React.FC = () => {
   };
 
   return (
-    <div className="pb-20">
+    <div className="relative pb-20">
       <div className="mx-[-16px] flex items-center px-3 pb-3 border-b mb-5">
         <FontAwesomeIcon icon="chevron-left" />
         <span className="ml-4 font-bold">내 물건 팔기</span>
@@ -57,7 +57,7 @@ const UploadPost: React.FC = () => {
 
       <button
         onClick={handleSubmit}
-        className="fixed bottom-0 left-0 bg-orange text-white p-3 text-sm font-bold rounded-lg w-full"
+        className="fixed bottom-3 max-w-[568px] bg-orange text-white p-3 text-sm font-bold rounded-lg w-full"
       >
         작성 완료
       </button>
