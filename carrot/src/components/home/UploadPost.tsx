@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
+import ImageUpload from "./ImageUpload";
 
 const UploadPost: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -13,10 +14,12 @@ const UploadPost: React.FC = () => {
 
   return (
     <div className="pb-20">
-      <div className="mx-[-16px] flex items-center px-3 pb-3 border-b mb-6">
+      <div className="mx-[-16px] flex items-center px-3 pb-3 border-b mb-5">
         <FontAwesomeIcon icon="chevron-left" />
         <span className="ml-4 font-bold">내 물건 팔기</span>
       </div>
+
+      <ImageUpload />
 
       <div className="mb-6">
         <label className="block text-sm font-bold mb-2">제목</label>
@@ -25,7 +28,7 @@ const UploadPost: React.FC = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           maxLength={30}
-          className="border border-gray-300 p-3 w-full rounded text-sm"
+          className="border border-gray-300 p-3 w-full rounded-lg text-sm"
           placeholder="제목"
         />
       </div>
@@ -36,7 +39,7 @@ const UploadPost: React.FC = () => {
           type="number"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
-          className="border border-gray-300 p-3 w-full rounded text-sm"
+          className="border border-gray-300 p-3 w-full rounded-lg text-sm"
           placeholder="가격을 입력해주세요."
         />
         <label className="text-sm">
@@ -55,14 +58,14 @@ const UploadPost: React.FC = () => {
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="border border-gray-300 p-3 w-full h-40 rounded text-sm"
+          className="border border-gray-300 p-3 w-full h-40 rounded-lg text-sm"
           placeholder="올릴 게시글 내용을 작성해 주세요.&#13;&#10;&#13;&#10;신뢰할 수 있는 거래를 위해 자세히 적어주세요."
         ></textarea>
       </div>
 
       <button
         onClick={handleSubmit}
-        className="fixed bottom-0 left-0 bg-orange text-white p-3 text-sm font-bold rounded w-full"
+        className="fixed bottom-0 left-0 bg-orange text-white p-3 text-sm font-bold rounded-lg w-full"
       >
         작성 완료
       </button>
