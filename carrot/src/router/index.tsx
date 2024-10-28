@@ -4,6 +4,7 @@ import GlobalLayout from "../layouts/global";
 import DailyLife from "../pages/daily/DailyLife";
 import MyPage from "../pages/mypage/MyPage";
 import PostDetail from "../components/home/PostDetail";
+import UploadPost from "../components/home/UploadPost";
 
 type CustomRouteObject = {
   label?: string;
@@ -33,6 +34,12 @@ export const ROUTES: CustomRouteObject[] = [
     path: "/post/:id",
     element: <PostDetail />,
     label: "상품상세정보",
+    show: true,
+  },
+  {
+    path: "/write",
+    element: <UploadPost />,
+    label: "상품 등록",
     show: true,
   },
 ];
