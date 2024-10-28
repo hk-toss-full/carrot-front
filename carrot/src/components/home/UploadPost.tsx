@@ -5,11 +5,12 @@ import ImageUpload from "./ImageUpload";
 const UploadPost: React.FC = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
-  const [acceptOffer, setAcceptOffer] = useState(false);
   const [description, setDescription] = useState("");
+  const [images, setImages] = useState<File[]>([]);
 
   const handleSubmit = () => {
-    console.log({ title, price, acceptOffer, description });
+    const imageUrls = images.map((image) => URL.createObjectURL(image));
+    console.log({ images: imageUrls, title, price, description });
   };
 
   return (
@@ -19,7 +20,7 @@ const UploadPost: React.FC = () => {
         <span className="ml-4 font-bold">내 물건 팔기</span>
       </div>
 
-      <ImageUpload />
+      <ImageUpload setImages={setImages} />
 
       <div className="mb-6">
         <label className="block text-sm font-bold mb-2">제목</label>
@@ -42,15 +43,6 @@ const UploadPost: React.FC = () => {
           className="border border-gray-300 p-3 w-full rounded-lg text-sm"
           placeholder="가격을 입력해주세요."
         />
-        <label className="text-sm">
-          <input
-            type="checkbox"
-            checked={acceptOffer}
-            onChange={(e) => setAcceptOffer(e.target.checked)}
-            className="mt-3 border-gray-200 accent-orange color-white"
-          />
-          <span className="ml-2">가격 제안 받기</span>
-        </label>
       </div>
 
       <div className="mb-6">

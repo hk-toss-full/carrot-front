@@ -1,8 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
-const ImageUpload: React.FC = () => {
-  const [images, setImages] = useState<File[]>([]);
+interface ImageUploadProps {
+  setImages: React.Dispatch<React.SetStateAction<File[]>>;
+}
+
+const ImageUpload: React.FC<ImageUploadProps> = ({ setImages }) => {
+  const [images, localSetImages] = useState<File[]>([]);
   const maxImages = 5;
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,11 +15,15 @@ const ImageUpload: React.FC = () => {
       alert(`최대 ${maxImages}개의 이미지를 업로드할 수 있습니다.`);
       return;
     }
-    setImages([...images, ...files]);
+    const newImages = [...images, ...files];
+    localSetImages(newImages);
+    setImages(newImages);
   };
 
   const removeImage = (index: number) => {
-    setImages(images.filter((_, i) => i !== index));
+    const newImages = images.filter((_, i) => i !== index);
+    localSetImages(newImages);
+    setImages(newImages);
   };
 
   return (
@@ -47,7 +55,7 @@ const ImageUpload: React.FC = () => {
               icon="circle-xmark"
               size="lg"
               onClick={() => removeImage(index)}
-              className="absolute top-0 right-0"
+              className="absolute top-0 right-0 bg-white"
             />
           </div>
         ))}
