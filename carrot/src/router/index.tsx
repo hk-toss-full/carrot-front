@@ -7,7 +7,9 @@ import PaymentDetailPage from "../pages/payment/pages/paymentdetail";
 import PaymentCreatePage from "../pages/payment/pages/paymentsave";
 import DailyLife from "../pages/daily/DailyLife";
 import MyPage from "../pages/mypage/MyPage";
+import PostDetail from "../components/home/PostDetail";
 import FailPage from "../pages/payment/fail";
+
 
 type CustomRouteObject = {
   label?: string;
@@ -43,6 +45,12 @@ const ROUTES: CustomRouteObject[] = [
     path: "/users",
     element: <MyPage />,
     label: "마이페이지",
+    show: true,
+  },
+  {
+    path: "/post/:id",
+    element: <PostDetail />,
+    label: "상품상세정보",
     show: true,
   },
   {

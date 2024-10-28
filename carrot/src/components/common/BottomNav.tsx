@@ -7,7 +7,7 @@ const BottomNav: React.FC = () => {
   const [activeNav, setActiveNav] = useState(2);
 
   return (
-    <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[600px] bg-white border-t z-50">
+    <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 max-w-[600px] w-full bg-white border-t z-50">
       <nav className="flex justify-between">
         <div className="text-center w-1/3 mx-7 my-2">
           <Link to="/daily" onClick={() => setActiveNav(1)}>
