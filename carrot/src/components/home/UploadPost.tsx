@@ -1,8 +1,14 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 const UploadPost: React.FC = () => {
   return (
-    <div>
+    <div className="pb-20">
+      <div className="mx-[-16px] flex items-center px-3 pb-3 border-b mb-6">
+        <FontAwesomeIcon icon="chevron-left" />
+        <span className="ml-4 font-bold">내 물건 팔기</span>
+      </div>
+
       <div className="mb-6">
         <label className="block text-sm font-bold mb-2">제목</label>
         <input
@@ -37,7 +43,7 @@ const UploadPost: React.FC = () => {
         ></textarea>
       </div>
 
-      <button className="bg-orange text-white p-3 text-sm font-bold rounded w-full">
+      <button className="fixed bottom-0 left-0 bg-orange text-white p-3 text-sm font-bold rounded w-full">
         작성 완료
       </button>
     </div>
