@@ -1,12 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import ImageUpload from "./ImageUpload";
+import { useNavigate } from "react-router-dom";
 
 const UploadPost: React.FC = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [images, setImages] = useState<File[]>([]);
+
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate(-1);
+  };
 
   const handleSubmit = () => {
     const imageUrls = images.map((image) => URL.createObjectURL(image));
@@ -16,7 +23,7 @@ const UploadPost: React.FC = () => {
   return (
     <div className="relative pb-20">
       <div className="mx-[-16px] flex items-center px-3 pb-3 border-b mb-5">
-        <FontAwesomeIcon icon="chevron-left" />
+        <FontAwesomeIcon icon="chevron-left" onClick={handleBackClick} />
         <span className="ml-4 font-bold">내 물건 팔기</span>
       </div>
 
