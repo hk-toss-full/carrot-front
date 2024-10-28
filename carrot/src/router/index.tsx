@@ -1,31 +1,28 @@
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider, RouteObject } from "react-router-dom";
+import { RouteObject } from "react-router-dom";
 import Home from "../pages/home";
-// import GlobalLayout from "../layouts/global";
-import Container from "../pages/payment/container";
 import { BrandpayCheckoutPage } from "../pages/payment/brandpay/brandpaycheckout";
-import { FailPage } from "../pages/payment/fail";
 import { PaymentCheckoutPage } from "../pages/payment/payment/paymentcheckout";
 import { PaymentSuccessPage } from "../pages/payment/payment/paymentsuccess";
 import { BrandpaySuccessPage } from "../pages/payment/brandpay/brandpaysuccess";
 import { WidgetCheckoutPage } from "../pages/payment/widget/widgetcheckout";
 import { WidgetSuccessPage } from "../pages/payment/widget/widgetsuccess";
+import DailyLife from "../pages/daily/DailyLife";
+import MyPage from "../pages/mypage/MyPage";
 
 type CustomRouteObject = {
   label?: string;
   show?: boolean;
+  children?: CustomRouteObject[];
 } & RouteObject;
 
 const ROUTES: CustomRouteObject[] = [
   {
     path: "/",
-    element: <GlobalLayout />,
-    element: <HomePage />,
+    element: <Home />,
     label: "홈",
     show: true,
     children: [
-      { path: "/", element: <Home />, label: "홈", show: true },
-      { path: "/payment", element: <Container />, label: "결제 페이지", show: true },
+      { path: "/", element: <Home />, label: "홈", show: true }
     ],
   },
   {
@@ -68,8 +65,6 @@ const ROUTES: CustomRouteObject[] = [
     ],
   },
   {
-    path: "fail",
-    element: <FailPage />,
     path: "/daily",
     element: <DailyLife />,
     label: "동네생활",
@@ -83,10 +78,4 @@ const ROUTES: CustomRouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter(ROUTES);
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
-);
-
-export default ROUTES
+export default ROUTES;
