@@ -1,20 +1,20 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouteObject } from "react-router-dom";
 import Home from "../pages/home";
-import { PaymentCheckoutPage } from "../pages/payment/payment/paymentcheckout";
+import PaymentCheckoutPage from "../pages/payment/payment/paymentcheckout";
 import PaymentSuccessPage from "../pages/payment/payment/paymentsuccess";
 import PaymentListPage from "../pages/payment/pages/payements";
 import PaymentDetailPage from "../pages/payment/pages/paymentdetail";
 import PaymentCreatePage from "../pages/payment/pages/paymentsave";
-import DailyLife from "../pages/daily/DailyLife";
-import MyPage from "../pages/mypage/MyPage";
+import MyPage from "../pages/mypage";
 import PostDetail from "../components/home/PostDetail";
 import UploadPost from "../components/home/UploadPost";
 import FailPage from "../pages/payment/fail";
+import GlobalLayout from "../layouts/global";
+import DailyLife from "../pages/daily";
 
 type CustomRouteObject = {
   label?: string;
   show?: boolean;
-  children?: CustomRouteObject[];
 } & RouteObject;
 
 const ROUTES: CustomRouteObject[] = [
@@ -23,17 +23,36 @@ const ROUTES: CustomRouteObject[] = [
     element: <Home />,
     label: "홈",
     show: true,
-    children: [{ path: "/", element: <Home />, label: "홈", show: true }],
   },
   {
-    path: "payment",
-    children: [
-      { path: "checkout", element: <PaymentCheckoutPage /> },
-      { path: "success", element: <PaymentSuccessPage /> },
-      { path: "list", element: <PaymentListPage /> },
-      { path: ":paymentId", element: <PaymentDetailPage /> },
-      { path: "create", element: <PaymentCreatePage /> },
-    ],
+    path: "/payment/checkout",
+    element: <PaymentCheckoutPage />,
+    label: "결제 체크",
+    show: true,
+  },
+  {
+    path: "/payment/success",
+    element: <PaymentSuccessPage />,
+    label: "결제 성공",
+    show: true,
+  },
+  {
+    path: "/payment/list",
+    element: <PaymentListPage />,
+    label: "결제 리스트",
+    show: true,
+  },
+  {
+    path: "/payment/:paymentId",
+    element: <PaymentDetailPage />,
+    label: "결제 정보",
+    show: true,
+  },
+  {
+    path: "/payment/create",
+    element: <PaymentCreatePage />,
+    label: "결제 생성",
+    show: true,
   },
   {
     path: "/daily",
@@ -48,7 +67,7 @@ const ROUTES: CustomRouteObject[] = [
     show: true,
   },
   {
-    path: "/post/:id",
+    path: "/posts/:id",
     element: <PostDetail />,
     label: "상품상세정보",
     show: true,
@@ -67,6 +86,8 @@ const ROUTES: CustomRouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter(ROUTES);
+const router = createBrowserRouter([
+  { path: "/", element: <GlobalLayout />, children: ROUTES },
+]);
 
 export default router;

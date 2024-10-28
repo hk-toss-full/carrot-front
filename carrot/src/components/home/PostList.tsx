@@ -62,7 +62,7 @@ const PostItem: React.FC<Post> = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/post/${index}`, { state: { title, location, time, price } });
+    navigate(`/posts/${index}`, { state: { title, location, time, price } });
   };
 
   return (

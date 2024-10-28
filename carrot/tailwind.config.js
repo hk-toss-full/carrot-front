@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}", // src 디렉토리 하위의 모든 JS, JSX, TS, TSX 파일
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        orange: "#FF6F0F",
+      },
+    },
   },
   plugins: [],
 };

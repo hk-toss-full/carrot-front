@@ -1,10 +1,27 @@
 import "@/assets/FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const BottomNav: React.FC = () => {
   const [activeNav, setActiveNav] = useState(2);
+  const location = useLocation();
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/daily":
+        setActiveNav(1);
+        break;
+      case "/":
+        setActiveNav(2);
+        break;
+      case "/users":
+        setActiveNav(3);
+        break;
+      default:
+        setActiveNav(2); // 기본값
+    }
+  }, [location.pathname]);
 
   return (
     <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 max-w-[600px] w-full bg-white border-t z-50">

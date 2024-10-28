@@ -11,7 +11,7 @@ const FloatButton: React.FC = () => {
   return (
     <button
       onClick={handlerWriteClick}
-      className="fixed bottom-[80px] right-4 bg-orange text-white py-1 px-4 rounded-full flex items-center justify-center"
+      className="fixed bottom-20 right-[435px] bg-orange text-white py-1 px-4 rounded-full flex items-center justify-center"
     >
       <span className="text-2xl pb-1.5">+</span>
       <span className="ml-0.5 text-sm">글쓰기</span>
