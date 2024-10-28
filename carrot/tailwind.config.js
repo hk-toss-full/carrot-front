@@ -1,12 +1,10 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+// tailwind.config.js
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}", // src 디렉토리 하위의 모든 JS, JSX, TS, TSX 파일
+  ],
   theme: {
-    extend: {
-      colors: {
-        orange: "#FF6F0F",
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };
