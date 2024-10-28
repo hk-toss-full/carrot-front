@@ -8,7 +8,7 @@ interface ConfirmResponse {
   [key: string]: any; // 추가적인 응답 필드에 대비한 타입
 }
 
-export function PaymentSuccessPage() {
+function PaymentSuccessPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [responseData, setResponseData] = useState<ConfirmResponse | null>(null);
@@ -98,3 +98,5 @@ export function PaymentSuccessPage() {
     </>
   );
 }
+
+export default (PaymentSuccessPage);

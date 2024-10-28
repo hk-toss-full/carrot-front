@@ -1,7 +1,6 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
-import { RouterProvider } from "react-router-dom";
+import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router-dom";
 import router from "./router";
 import "@/style/tailwindcss.css";
 import "@/style/global.css";
@@ -12,9 +11,12 @@ const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      
+      <RouterProvider router={createBrowserRouter(router)} />
+      
     </QueryClientProvider>
 );
 

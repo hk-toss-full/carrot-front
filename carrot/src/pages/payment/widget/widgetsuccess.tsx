@@ -1,9 +1,9 @@
-// src/components/WidgetSuccessPage.tsx
+// src/components/PaymentSuccess.tsx
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { confirmWidgetPayment } from "../api";
+import { confirmPayment } from "../api";
 
-export function WidgetSuccessPage() {
+function PaymentSuccessPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [responseData, setResponseData] = useState<any>(null);
@@ -17,7 +17,7 @@ export function WidgetSuccessPage() {
       };
 
       try {
-        const data = await confirmWidgetPayment(requestData);
+        const data = await confirmPayment(requestData);
         setResponseData(data);
       } catch (error: any) {
         navigate(`/fail?code=${error.code}&message=${error.message}`);
@@ -34,3 +34,5 @@ export function WidgetSuccessPage() {
     </div>
   );
 }
+
+export default PaymentSuccessPage
