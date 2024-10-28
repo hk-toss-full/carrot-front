@@ -1,8 +1,8 @@
-import { loadTossPayments, TossPaymentsPayment } from "@tosspayments/tosspayments-sdk";
+import { loadTossPayments, ANONYMOUS  } from "@tosspayments/tosspayments-sdk";
 import { useEffect, useState } from "react";
 
-const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
-const customerKey = generateRandomString();
+const clientKey = "test_ck_kYG57Eba3GZzXaRdnYYL8pWDOxmA";
+const customerKey = "gK3gyG1Kb5pUxqrq4ZmoE";
 
 const amount = {
   currency: "KRW",
@@ -31,7 +31,7 @@ function convertToEnglishMethod(method: PaymentMethod): string {
 }
 
 export function PaymentCheckoutPage() {
-  const [payment, setPayment] = useState<TossPaymentsPayment | null>(null);
+  const [payment, setPayment] = useState<ANONYMOUS  | null>(null);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<PaymentMethod | null>(null);
 
   function selectPaymentMethod(method: PaymentMethod) {

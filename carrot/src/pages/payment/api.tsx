@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 요청을 위한 기본 Axios 설정
 const apiClient = axios.create({
-  baseURL: "/api",
+  baseURL: "http://localhost:4000",
   headers: {
     "Content-Type": "application/json",
   },

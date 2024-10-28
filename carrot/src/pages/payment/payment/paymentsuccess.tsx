@@ -22,7 +22,7 @@ function PaymentSuccessPage() {
       };
 
       try {
-        const response = await fetch("/api/confirm/payment", {
+        const response = await fetch("http://localhost:4000/confirm/payment", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
