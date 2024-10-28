@@ -2,6 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/home";
 import { PaymentCheckoutPage } from "../pages/payment/payment/paymentcheckout";
 import PaymentSuccessPage from "../pages/payment/payment/paymentsuccess";
+import PaymentListPage from "../pages/payment/pages/payements";
+import PaymentDetailPage from "../pages/payment/pages/paymentdetail";
+import PaymentCreatePage from "../pages/payment/pages/paymentsave";
 import DailyLife from "../pages/daily/DailyLife";
 import MyPage from "../pages/mypage/MyPage";
 import FailPage from "../pages/payment/fail";
@@ -25,6 +28,9 @@ const ROUTES: CustomRouteObject[] = [
     children: [
       { path: "checkout", element: <PaymentCheckoutPage /> },
       { path: "success", element: <PaymentSuccessPage /> },
+      { path: "list", element: <PaymentListPage /> },
+      { path: ":paymentId", element: <PaymentDetailPage /> },
+      { path: "create", element: <PaymentCreatePage /> },
     ],
   },
   {
