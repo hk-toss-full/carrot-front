@@ -2,6 +2,7 @@ import React from "react";
 import "@/assets/FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComments } from "@fortawesome/free-regular-svg-icons";
+import { Link } from "react-router-dom";
 
 const TopNav: React.FC = () => {
   return (
@@ -18,7 +19,9 @@ const TopNav: React.FC = () => {
             <FontAwesomeIcon icon="magnifying-glass" />
           </div>
           <div>
-            <FontAwesomeIcon icon={faComments} />
+            <Link to="/chat">
+              <FontAwesomeIcon icon={faComments} />
+            </Link>
           </div>
         </div>
       </nav>
