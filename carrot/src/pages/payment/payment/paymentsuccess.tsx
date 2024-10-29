@@ -73,7 +73,7 @@ function PaymentSuccessPage() {
 
       const paymentRequest = {
         userId: 1, // 실제 사용자 ID로 교체해야 합니다.
-        amount: amount,
+        amount: parseFloat(amount),
         status: "COMPLETED",
         transactionId: orderId,
       };

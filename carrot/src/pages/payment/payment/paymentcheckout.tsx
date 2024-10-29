@@ -1,7 +1,7 @@
-import { loadTossPayments, ANONYMOUS, TossPaymentsPayment } from "@tosspayments/tosspayments-sdk";
+import { loadTossPayments, ANONYMOUS } from "@tosspayments/tosspayments-sdk";
 import { useEffect, useState } from "react";
 
-const clientKey = "test_sk_zXLkKEypNArWmo50nX3lmeaxYG5R";
+const clientKey = "test_ck_kYG57Eba3GZzXaRdnYYL8pWDOxmA";
 const customerKey = "gK3gyG1Kb5pUxqrq4ZmoE";
 
 type PaymentMethod = "카드" | "계좌이체" | "가상계좌" | "휴대폰 결제" | "문화상품권" | "해외 간편결제";
@@ -26,7 +26,7 @@ function convertToEnglishMethod(method: PaymentMethod): string {
 }
 
 export function PaymentCheckoutPage() {
-  const [payment, setPayment] = useState<TossPaymentsPayment | null>(null);
+  const [payment, setPayment] = useState<ANONYMOUS | null>(null);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<PaymentMethod | null>(null);
   const [amount, setAmount] = useState(10000);
 
@@ -50,10 +50,7 @@ export function PaymentCheckoutPage() {
     const orderId = generateRandomString();
 
     const commonParams = {
-      amount  :{
-        currency: "KRW",
-          value: amount,
-      },
+      amount,
       orderId,
       orderName: "토스 티셔츠 외 2건",
       successUrl: `${window.location.origin}/payment/success?orderId=${orderId}&amount=${amount}`,
@@ -68,26 +65,7 @@ export function PaymentCheckoutPage() {
         ...commonParams,
         method: convertToEnglishMethod(selectedPaymentMethod),
       });
-      // const response = await payment.requestPayment({
-      //   method: "CARD",
-      //   amount: {
-      //     currency: "KRW",
-      //     value: 50000,
-      //   },
-      //   orderId,
-      //   orderName: "토스 티셔츠 외 2건",
-      //   successUrl: window.location.origin + "/success.html",
-      //   failUrl: window.location.origin + "/fail.html",
-      //   customerEmail: "customer123@gmail.com",
-      //   customerName: "김토스",
-      //   customerMobilePhone: "01012341234",
-      //   card: {
-      //     useEscrow: false,
-      //     flowMode: "DEFAULT",
-      //     useCardPoint: false,
-      //     useAppCardOnly: false,
-      //   },
-      // });
+
       if (response.paymentKey) {
         const redirectUrl = `${window.location.origin}/payment/success?orderId=${orderId}&amount=${amount}&paymentKey=${response.paymentKey}`;
         console.log("Redirecting to:", redirectUrl);

@@ -1,27 +1,23 @@
 import axiosInstance from '../axiosConfig';
 
 interface PaymentRequest {
-  amount: number;
   userId: string;
-  orderId: string;
-  orderName: string;
+  amount: number;
   status: "COMPLETED";
   transactionId: string;
 }
 
 interface PaymentResponse {
   id: number;
-  amount: number;
   userId: string;
-  orderId: string;
-  orderName: string;
+  amount: number;
   status: string;
   transactionId: string;
   createdAt: string;
   updatedAt: string;
 }
 
-const ROUTE = '/payment/checkout';
+const ROUTE = '/api/v1/payments';
 
 export const PaymentService = {
   getAll: async (): Promise<PaymentResponse[]> => {
