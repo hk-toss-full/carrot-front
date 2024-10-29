@@ -12,6 +12,7 @@ const PostDetail: React.FC = () => {
     time,
     price,
     isReserved,
+    images,
   } = location.state || {};
 
   const navigate = useNavigate();
@@ -25,7 +26,6 @@ const PostDetail: React.FC = () => {
     setIsLiked((prev) => !prev);
   };
 
-  const images = ["image1.jpg", "image2.jpg", "image3.jpg"];
   const nickname = "당근";
   const category = "디지털기기";
   const description = "상태 최상이에요.";
@@ -45,15 +45,23 @@ const PostDetail: React.FC = () => {
 
         {/* 이미지 슬라이더 */}
         <div className="w-full h-80 overflow-x-auto flex snap-x snap-mandatory scrollbar-hide bg-gray-300">
-          {images.map((image, index) => (
-            <div key={index} className="flex-none w-full h-full snap-start">
-              <img
-                src={image}
-                alt={`product-${index}`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
+          {images.map(
+            (
+              image: string | undefined,
+              index: React.Key | null | undefined
+            ) => (
+              <div
+                key={index}
+                className="flex-none w-full h-full snap-start flex items-center justify-center bg-gray-300"
+              >
+                <img
+                  src={image}
+                  alt={`product-${index}`}
+                  className="max-h-full max-w-full object-contain"
+                />
+              </div>
+            )
+          )}
         </div>
       </div>
 
