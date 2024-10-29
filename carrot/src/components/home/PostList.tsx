@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import FloatButton from "./FloatButton";
 
 interface Post {
-  index: number;
+  id: number;
   title: string;
   location: string;
   time: string;
@@ -12,16 +12,14 @@ interface Post {
 }
 
 // 더미 데이터
-const posts: Post[] = [
+const initialPosts = [
   {
-    index: 1,
     title: "에어팟4 노캔버전",
     location: "방학제2동",
     time: "9분 전",
     price: "219,000원",
   },
   {
-    index: 2,
     title: "애플 에어팟2",
     location: "하월곡동",
     time: "12분 전",
@@ -29,21 +27,49 @@ const posts: Post[] = [
     isReserved: true,
   },
   {
-    index: 3,
     title: "아이폰 13미니 팝니다",
     location: "상계5동",
     time: "11분 전",
     price: "310,000원",
   },
   {
-    index: 4,
     title: "아이패드미니2 부품용",
     location: "상계6.7동",
     time: "6분 전",
     price: "10,000원",
   },
   {
-    index: 5,
+    title: "아이폰13미니 핑크 128g",
+    location: "상봉동",
+    time: "1일 전",
+    price: "330,000원",
+  },
+  {
+    title: "에어팟4 노캔버전",
+    location: "방학제2동",
+    time: "9분 전",
+    price: "219,000원",
+  },
+  {
+    title: "애플 에어팟2",
+    location: "하월곡동",
+    time: "12분 전",
+    price: "13,000원",
+    isReserved: true,
+  },
+  {
+    title: "아이폰 13미니 팝니다",
+    location: "상계5동",
+    time: "11분 전",
+    price: "310,000원",
+  },
+  {
+    title: "아이패드미니2 부품용",
+    location: "상계6.7동",
+    time: "6분 전",
+    price: "10,000원",
+  },
+  {
     title: "아이폰13미니 핑크 128g",
     location: "상봉동",
     time: "1일 전",
@@ -51,8 +77,14 @@ const posts: Post[] = [
   },
 ];
 
+// id를 자동으로 생성
+const posts: Post[] = initialPosts.map((post, index) => ({
+  id: index + 1, // 1부터 시작하는 id
+  ...post, // 나머지 속성들을 복사
+}));
+
 const PostItem: React.FC<Post> = ({
-  index,
+  id,
   title,
   location,
   time,
@@ -62,7 +94,9 @@ const PostItem: React.FC<Post> = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/posts/${index}`, { state: { title, location, time, price } });
+    navigate(`/posts/${id}`, {
+      state: { title, location, time, price, isReserved },
+    });
   };
 
   return (
@@ -76,7 +110,9 @@ const PostItem: React.FC<Post> = ({
             {location} ・ {time}
           </p>
           {isReserved && (
-            <span className="text-green-500 text-xs mr-1">예약중</span>
+            <span className="text-green-500 text-xs font-bold mr-1">
+              예약중
+            </span>
           )}
           <span className="text-sm font-bold">{price}</span>
         </div>
@@ -87,9 +123,9 @@ const PostItem: React.FC<Post> = ({
 
 const PostList: React.FC = () => {
   return (
-    <div className="max-w-[600px] mx-auto">
-      {posts.map((post, index) => (
-        <PostItem key={index} {...post} />
+    <div className="max-w-[600px] mx-auto pb-10">
+      {posts.map((post, id) => (
+        <PostItem key={id} {...post} />
       ))}
       <FloatButton />
     </div>

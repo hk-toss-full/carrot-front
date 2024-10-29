@@ -6,7 +6,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const PostDetail: React.FC = () => {
   const location = useLocation();
-  const { title, location: postLocation, time, price } = location.state || {};
+  const {
+    title,
+    location: postLocation,
+    time,
+    price,
+    isReserved,
+  } = location.state || {};
 
   const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
@@ -66,7 +72,10 @@ const PostDetail: React.FC = () => {
 
       {/* 상세 정보 */}
       <div className="p-4">
-        <h1 className="text-lg font-bold">{title}</h1>
+        <h1 className="text-lg font-bold">
+          {isReserved && <span className="text-green-500 mr-1">예약중</span>}
+          {title}
+        </h1>
         <p className="text-gray-500 text-sm">
           {category} ・ {time}
         </p>
