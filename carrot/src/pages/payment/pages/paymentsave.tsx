@@ -8,7 +8,7 @@ const PaymentSavePage: React.FC = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/v1/payments", { userId, amount });
+      const response = await axios.post("/payment/list", { userId, amount });
       alert("결제가 성공적으로 저장되었습니다.");
     } catch (error) {
       alert("결제 저장 중 오류가 발생했습니다.");
