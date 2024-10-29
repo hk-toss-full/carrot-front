@@ -25,15 +25,15 @@ function PaymentListPage() {
         createdAt: "2023-10-28T12:00:00",
         updatedAt: "2023-10-28T12:00:00",
       },
-      // {
-      //   id: 2,
-      //   userId: 2,
-      //   amount: 100000,
-      //   status: "PENDING",
-      //   transactionId: "MC42MDYxNTg4ODY2OTY3",
-      //   createdAt: "2023-10-28T12:30:00",
-      //   updatedAt: "2023-10-28T12:30:00",
-      // },
+      {
+        id: 2,
+        userId: 2,
+        amount: 100000,
+        status: "PENDING",
+        transactionId: "MC42MDYxNTg4ODY2OTY3",
+        createdAt: "2023-10-28T12:30:00",
+        updatedAt: "2023-10-28T12:30:00",
+      },
     ];
 
     setPayments(mockData);
