@@ -19,7 +19,7 @@ const TopNav: React.FC = () => {
             <FontAwesomeIcon icon="magnifying-glass" />
           </div>
           <div>
-            <Link to="/chat">
+            <Link to="/chat/rooms">
               <FontAwesomeIcon icon={faComments} />
             </Link>
           </div>

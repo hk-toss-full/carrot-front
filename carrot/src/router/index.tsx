@@ -11,6 +11,9 @@ import UploadPost from "../components/home/UploadPost";
 import FailPage from "../pages/payment/fail";
 import GlobalLayout from "../layouts/global";
 import DailyLife from "../pages/daily";
+import ChatList from "../pages/chat/ChatList";
+import ChatMessage from "../pages/chat/ChatMessage";
+// import ChatMessage from "../pages/chat/ChatMessage";
 
 type CustomRouteObject = {
   label?: string;
@@ -22,6 +25,42 @@ const ROUTES: CustomRouteObject[] = [
     path: "/",
     element: <Home />,
     label: "홈",
+    show: true,
+  },
+  {
+    path: "/daily",
+    element: <DailyLife />,
+    label: "동네생활",
+    show: true,
+  },
+  {
+    path: "/users",
+    element: <MyPage />,
+    label: "마이페이지",
+    show: true,
+  },
+  {
+    path: "/posts/:id",
+    element: <PostDetail />,
+    label: "상품상세정보",
+    show: true,
+  },
+  {
+    path: "/write",
+    element: <UploadPost />,
+    label: "상품 등록",
+    show: true,
+  },
+  {
+    path: "/chat/rooms",
+    element: <ChatList />,
+    label: "채팅",
+    show: true,
+  },
+  {
+    path: "/chat/rooms/:chatRoomId",
+    element: <ChatMessage />,
+    label: "채팅방",
     show: true,
   },
   {
@@ -52,30 +91,6 @@ const ROUTES: CustomRouteObject[] = [
     path: "/payment/create",
     element: <PaymentCreatePage />,
     label: "결제 생성",
-    show: true,
-  },
-  {
-    path: "/daily",
-    element: <DailyLife />,
-    label: "동네생활",
-    show: true,
-  },
-  {
-    path: "/users",
-    element: <MyPage />,
-    label: "마이페이지",
-    show: true,
-  },
-  {
-    path: "/posts/:id",
-    element: <PostDetail />,
-    label: "상품상세정보",
-    show: true,
-  },
-  {
-    path: "/write",
-    element: <UploadPost />,
-    label: "상품 등록",
     show: true,
   },
   {

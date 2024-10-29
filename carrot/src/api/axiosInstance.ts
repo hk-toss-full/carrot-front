@@ -7,7 +7,7 @@ import axios, {
 } from "axios";
 
 const axiosInstance: Axios = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: import.meta.env.VITE_APP_BASE_URL,
   withCredentials: true,
 });
 
