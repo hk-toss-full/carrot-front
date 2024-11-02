@@ -14,6 +14,8 @@ import DailyLife from "../pages/daily";
 import ChatList from "../pages/chat/ChatList";
 import ChatMessage from "../pages/chat/ChatMessage";
 // import ChatMessage from "../pages/chat/ChatMessage";
+import LoginPage from "../pages/login";
+import KakaoAuth from "../components/login/kakaoAuth";
 
 type CustomRouteObject = {
   label?: string;
@@ -22,7 +24,17 @@ type CustomRouteObject = {
 
 const ROUTES: CustomRouteObject[] = [
   {
-    path: "/",
+    path: "/login",
+    element: <LoginPage />,
+    show: true,
+  },
+  {
+    path: "/auth/kakao",
+    element: <KakaoAuth />,
+    show: false,
+  },
+  {
+    path: "/home",
     element: <Home />,
     label: "홈",
     show: true,

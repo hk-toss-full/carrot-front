@@ -12,7 +12,7 @@ const BottomNav: React.FC = () => {
       case "/daily":
         setActiveNav(1);
         break;
-      case "/":
+      case "/home":
         setActiveNav(2);
         break;
       case "/users":
@@ -39,7 +39,7 @@ const BottomNav: React.FC = () => {
           </Link>
         </div>
         <div className="text-center w-1/3 mx-7 my-2">
-          <Link to="/" onClick={() => setActiveNav(2)}>
+          <Link to="/home" onClick={() => setActiveNav(2)}>
             <div>
               <FontAwesomeIcon
                 icon="house"
