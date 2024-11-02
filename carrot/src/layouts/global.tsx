@@ -1,6 +1,6 @@
 // import Footer from "@/components/common/Footer";
 import { Outlet } from "react-router-dom";
-// import BottomNav from "../components/common/BottomNav";
+import BottomNav from "../components/common/BottomNav";
 
 const GlobalLayout = () => {
   return (
@@ -9,7 +9,7 @@ const GlobalLayout = () => {
         <div className="relative p-4 h-full">
           <Outlet />
         </div>
-        {/* <BottomNav /> */}
+        <BottomNav />
       </div>
     </div>
   );
